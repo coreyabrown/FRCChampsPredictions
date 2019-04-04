@@ -45,24 +45,24 @@ example_batch = next(iter(train_ds))[0]
 
 feature_columns = []
 
-# numeric cols
+# numeric colulmns
 for header in ['trestbps', 'chol', 'thalach', 'oldpeak', 'slope', 'ca']:
     feature_columns.append(feature_column.numeric_column(header))
 
 age = feature_column.numeric_column('age')
 feature_columns.append(age)
 
-# bucketized cols
+# bucketized columns
 age_buckets = feature_column.bucketized_column(age, boundaries=[18, 25, 30, 35, 40, 45, 50, 55, 60, 65])
 feature_columns.append(age_buckets)
 
-# indicator cols
+# indicator columns
 thal = feature_column.categorical_column_with_vocabulary_list(
       'thal', ['fixed', 'normal', 'reversible'])
 thal_one_hot = feature_column.indicator_column(thal)
 feature_columns.append(thal_one_hot)
 
-# embedding cols
+# embedding columns
 thal_embedding = feature_column.embedding_column(thal, dimension=8)
 feature_columns.append(thal_embedding)
 
